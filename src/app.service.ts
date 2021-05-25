@@ -7,6 +7,6 @@ export class AppService {
     this.manager = getManager();
   }
   getHello(): any {
-    return this.manager.query('SELECT * FROM teachers;');
+    return this.manager.query('SELECT * FROM USER;');
   }
 }
