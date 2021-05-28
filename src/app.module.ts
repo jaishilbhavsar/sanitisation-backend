@@ -10,9 +10,10 @@ import { CategoryModule } from './category/category.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { ProductModule } from './product/product.module';
 import { UsercartModule } from './usercart/usercart.module';
+import { FaqModule } from './faq/faq.module';
 
 @Module({
-  imports: [DatabaseModule, UserModule, UsertypeModule, AddressModule, AppointmentModule, CategoryModule, InvoiceModule, ProductModule, UsercartModule],
+  imports: [DatabaseModule, UserModule, UsertypeModule, AddressModule, AppointmentModule, CategoryModule, InvoiceModule, ProductModule, UsercartModule, FaqModule],
   controllers: [AppController],
   providers: [AppService],
 })
