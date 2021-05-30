@@ -1,5 +1,5 @@
 import { ADDRESSModal } from './../modal/address.modal';
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Param } from '@nestjs/common';
 import { AddressService } from './address.service';
 
 @Controller('address')
@@ -7,9 +7,9 @@ export class AddressController {
     constructor(private addressService: AddressService) {
 
     }
-    @Get('getAddressByUserID')
-    public async getAddressByUserID(@Req() req, @Body() data: ADDRESSModal): Promise<ADDRESSModal> {
-        return await this.addressService.getAddressByUserID(data);
+    @Get('getAddressByUserID/:UserId')
+    public async getAddressByUserID(@Param('UserId') UserId ): Promise<ADDRESSModal> {
+        return await this.addressService.getAddressByUserID(UserId);
     }
     @Post('InsertAddress')
     public async InsertAddress(@Req() req, @Body() data: ADDRESSModal): Promise<any> {

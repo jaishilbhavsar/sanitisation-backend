@@ -1,5 +1,5 @@
 import { FAQModal } from './../modal/faq.modal';
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Req } from '@nestjs/common';
 import { FaqService } from './faq.service';
 
 @Controller('faq')
@@ -8,11 +8,11 @@ export class FaqController {
 
     }
     @Get('getAllFaq')
-    public async getAllFaq(@Req() req, @Body() data: FAQModal): Promise<FAQModal> {
-        return await this.faqService.getAllFaq(data);
+    public async getAllFaq(): Promise<FAQModal> {
+        return await this.faqService.getAllFaq();
     }
     @Get('getAllActiveFaq')
-    public async getAllActiveFaq(@Req() req, @Body() data: FAQModal): Promise<any> {
-        return await this.faqService.getAllActiveFaq(data);
+    public async getAllActiveFaq(): Promise<FAQModal> {
+        return await this.faqService.getAllActiveFaq();
     }
 }

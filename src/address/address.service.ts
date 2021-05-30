@@ -8,8 +8,8 @@ export class AddressService {
     constructor(private manager: EntityManager) {
         this.manager = getManager();
     }
-    public async getAddressByUserID(data: ADDRESSModal): Promise<ADDRESSModal> {
-        let sql = "select * from " + this.tableName + " where userID= " + data.userID +  "';"
+    public async getAddressByUserID(data: Number): Promise<ADDRESSModal> {
+        let sql = "select * from " + this.tableName + " where userID= " + data +  ";"
         console.log(sql);
         return await this.manager.query(sql);
     }
