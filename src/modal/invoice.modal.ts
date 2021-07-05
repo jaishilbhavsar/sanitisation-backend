@@ -4,6 +4,7 @@ export class INVOICEModal {
     public productID: Number;
     public quantity: Number;
     public totalAmount: Number;
+    public invoicedate: Date;
     public status: String;
     public deliveredDate: Date;
 }
