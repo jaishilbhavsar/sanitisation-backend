@@ -3,5 +3,7 @@ export class APPOINTMENTModal {
     public userID: Number;
     public addressID: Number;
     public appoitmentDate: Date;
+    public noOfRooms: Number;
+    public amount: Number;
     public status: String;
 }
