@@ -29,8 +29,26 @@ export class AppointmentService {
             throw new HttpException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
+    public async editAppointment(data: APPOINTMENTModal): Promise<any> {
+        try {
+            let result;
+            let amount = 0;
+            let status = "pending";
+            let res = await this.chargesService.getAllCharges();
+            if (res) {
+                amount = (Number(res[0].perRoomCharge) * Number(data.noOfRooms)) + Number(res[0].baseCharge);
+                let sql = "UPDATE " + this.tableName + " SET addressID=" + data.addressID + ",appoitmentDate='" + data.appoitmentDate + "',noOfRooms=" + data.noOfRooms + ",amount=" + amount + ",status='" + status + "' WHERE appointmentID=" + data.appointmentID + "";
+                console.log(sql);
+                result = await this.manager.query(sql);
+            }
+            return result;
+        }
+        catch (er) {
+            throw new HttpException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
     public async getAllApponitmentsByUserId(data: Number): Promise<appointmentAddressModal[]> {
-        let sql = "SELECT * FROM APPOINTMENT ap JOIN ADDRESS ad ON ap.addressID=ad.addressID WHERE ap.userID=" + data + ";"
+        let sql = "SELECT * FROM APPOINTMENT ap JOIN ADDRESS ad ON ap.addressID=ad.addressID WHERE ap.userID=" + data + " ORDER BY ap.appoitmentDate DESC;"
         let res = await this.manager.query(sql);
         let myAppointments = new Array<appointmentAddressModal>();
         await res.map((data) => {
