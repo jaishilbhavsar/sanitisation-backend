@@ -12,6 +12,10 @@ export class AppointmentController {
     public async bookAppointment(@Req() req, @Body() data: APPOINTMENTModal): Promise<any> {
         return await this.appointmentService.bookAppointment(data);
     }
+    @Post('editappointment')
+    public async editAppointment(@Req() req, @Body() data: APPOINTMENTModal): Promise<any> {
+        return await this.appointmentService.editAppointment(data);
+    }
     @Get('getAllUserAppointments/:UserId')
     public async getAllApponitmentsByUserId(@Param('UserId') UserId): Promise<appointmentAddressModal[]> {
         return await this.appointmentService.getAllApponitmentsByUserId(UserId);
