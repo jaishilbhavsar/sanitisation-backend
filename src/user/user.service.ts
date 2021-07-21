@@ -9,9 +9,22 @@ export class UserService {
         this.manager = getManager();
     }
     public async login(data: USERModal): Promise<USERModal> {
-        let sql = "select * from " + this.tableName + " where email='" + data.email + "' AND password='" + data.password + "';"
-        console.log(sql);
-        return await this.manager.query(sql);
+        try {
+            let sql = "select * from " + this.tableName + " where email='" + data.email + "' AND password='" + data.password + "';"
+            let result = null;
+            let response = await this.manager.query(sql);
+            if (response.length > 0) {
+                result = { isSuccess: 1, message: "success", data: response };
+            }
+            else {
+                result = { isSuccess: 0, message: "Invalid Email/Password." }
+            }
+            return result;
+        }
+        catch (er) {
+            throw new HttpException(er.sqlMessage, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+
     }
     public async signUp(data: USERModal): Promise<any> {
         try {
@@ -21,7 +34,7 @@ export class UserService {
             return result;
         }
         catch (er) {
-            throw new HttpException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR)
+            throw new HttpException(er.sqlMessage, HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

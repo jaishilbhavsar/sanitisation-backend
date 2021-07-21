@@ -1,7 +1,7 @@
 import { appointmentAddressModal } from './../modal/appointmentAddress.modal';
 import { AppointmentService } from './appointment.service';
 import { APPOINTMENTModal } from './../modal/appointment.modal';
-import { Controller, Post, Req, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Req, Body, Get, Param, Delete } from '@nestjs/common';
 
 @Controller('appointment')
 export class AppointmentController {
@@ -19,5 +19,9 @@ export class AppointmentController {
     @Get('getAllUserAppointments/:UserId')
     public async getAllApponitmentsByUserId(@Param('UserId') UserId): Promise<appointmentAddressModal[]> {
         return await this.appointmentService.getAllApponitmentsByUserId(UserId);
+    }
+    @Delete('deleteappointment/:id')
+    public async deleteAppointment(@Req() req, @Param('id') id: Number): Promise<any> {
+        return await this.appointmentService.deleteAppointment(id);
     }
 }

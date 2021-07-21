@@ -68,4 +68,17 @@ export class AppointmentService {
         });
         return myAppointments;
     }
+
+    public async deleteAppointment(id: Number): Promise<any> {
+        try {
+            let result;
+            let sql = "DELETE FROM " + this.tableName + " WHERE appointmentID=" + id;
+            console.log(sql);
+            result = await this.manager.query(sql);
+            return result;
+        }
+        catch (er) {
+            throw new HttpException(er.sqlMessage, HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
 }
