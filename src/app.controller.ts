@@ -7,11 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    try {
-      return this.appService.getHello();
-    }
-    catch (er) {
-      return "Error ";
-    }
+    return this.appService.getHello();
   }
 }

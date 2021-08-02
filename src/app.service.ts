@@ -1,5 +1,5 @@
 import { EntityManager, getManager } from 'typeorm';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
@@ -7,11 +7,6 @@ export class AppService {
     this.manager = getManager();
   }
   getHello(): any {
-    try {
-      return this.manager.query('SELECT * FROM USER;');
-    }
-    catch (er) {
-      throw new HttpException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR)
-    }
+    return this.manager.query('SELECT * FROM USER;');
   }
 }
