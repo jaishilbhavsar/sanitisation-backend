@@ -5,4 +5,6 @@ export class PRODUCTModal {
     public price: Number;
     public manufacturerName: String;
     public categoryID: Number;
+    public imageURL: String;
+    public categoryName?: Number;
 }
