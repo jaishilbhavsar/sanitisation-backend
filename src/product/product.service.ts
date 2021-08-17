@@ -40,7 +40,7 @@ export class ProductService {
         }
     }
     public async getAllInvoicesByUserID(id: Number): Promise<any> {
-        let sql = "SELECT * FROM INVOICE i JOIN PRODUCT p ON i.productID=p.productID JOIN ADDRESS a ON i.addressID=a.addressID JOIN CATEGORY c ON p.categoryID=c.categoryID WHERE i.userID=" + id + ";"
+        let sql = "SELECT i.*,a.*,p.productID,p.productName,p.price,p.manufacturerName,p.categoryID,p.imageURL FROM INVOICE i JOIN PRODUCT p ON i.productID=p.productID JOIN ADDRESS a ON i.addressID=a.addressID JOIN CATEGORY c ON p.categoryID=c.categoryID WHERE i.userID=" + id + ";"
         console.log(sql);
         return await this.manager.query(sql);
     }
